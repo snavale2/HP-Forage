@@ -13,63 +13,54 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 // Creating the REST controller 
 @RestController
-@RequestMapping(path = "/employees") 
-public class EmployeeController { 
+@RequestMapping(path = "/employees")
+public class EmployeeController {
 
     @Autowired
-   private EmployeeManager employeeManager; 
+    private EmployeeManager employeeManager;
 
-   
     public EmployeeController(EmployeeManager employeeManager) {
         this.employeeManager = employeeManager;
     }
-        
-        // Implementing a GET method 
-        // to get the list of all 
-        // the employees 
-   @GetMapping( produces = "application/json") 
-  
-    public Employees getEmployees() 
-    { 
-  
-        return employeeManager 
-            .getAllEmployees(); 
+
+    // Implementing a GET method
+    // to get the list of all
+    // the employees
+    @GetMapping(produces = "application/json")
+
+    public Employees getEmployees() {
+
+        return employeeManager
+                .getAllEmployees();
     }
 
-    @PostMapping( 
-        path = "/", 
-        consumes = "application/json", 
-        produces = "application/json") 
-  
-    public ResponseEntity<Object> addEmployee( 
-        @RequestBody Employee employee) 
-    { 
-  
-        // Creating an ID of an employee 
-        // from the number of employees 
-        Integer id 
-            = employeeManager 
-                  .getAllEmployees() 
-                  .getEmployeeList() 
-                  .size() 
-              + 1; 
-  
-        employee.setEmployee_id(id); 
-  
-        employeeManager 
-            .addEmployee(employee); 
-  
-        URI location 
-            = ServletUriComponentsBuilder 
-                  .fromCurrentRequest() 
-                  .path("/{id}") 
-                  .buildAndExpand( 
-                      employee.getEmployee_id()) 
-                  .toUri(); 
-  
-               return ResponseEntity 
-            .created(location) 
-            .build(); 
-    } 
-} 
+    @PostMapping(path = "/", consumes = "application/json", produces = "application/json")
 
+    public ResponseEntity<Object> addEmployee(
+            @RequestBody Employee employee) {
+
+        // Creating an ID of an employee
+        // from the number of employees
+        Integer id = employeeManager
+                .getAllEmployees()
+                .getEmployeeList()
+                .size()
+                + 1;
+
+        employee.setEmployee_id(id);
+
+        employeeManager
+                .addEmployee(employee);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(
+                        employee.getEmployee_id())
+                .toUri();
+
+        return ResponseEntity
+                .created(location)
+                .build();
+    }
+}

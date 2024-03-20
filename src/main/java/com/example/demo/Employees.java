@@ -7,7 +7,7 @@ public class Employees {
     List<Employee> employeeList;
 
     public List<Employee> getEmployeeList() {
-        if(employeeList == null){
+        if (employeeList == null) {
             employeeList = new ArrayList<>();
         }
         return employeeList;
@@ -16,7 +16,5 @@ public class Employees {
     public void setEmployeeList(List<Employee> employeeList) {
         this.employeeList = employeeList;
     }
-
-    
 
 }

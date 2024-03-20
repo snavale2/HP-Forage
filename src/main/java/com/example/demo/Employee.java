@@ -3,7 +3,8 @@ package com.example.demo;
 // Created Employee Class
 public class Employee {
 
-    public Employee(){}
+    public Employee() {
+    }
 
     public Employee(Integer employee_id, String first_name, String last_name, String email, String title) {
         this.employee_id = employee_id;
@@ -18,7 +19,7 @@ public class Employee {
     private String last_name;
     private String email;
     private String title;
-    
+
     public Integer getEmployee_id() {
         return employee_id;
     }
@@ -58,6 +59,5 @@ public class Employee {
     public String getTitle() {
         return title;
     }
-
 
 }
